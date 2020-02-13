@@ -270,6 +270,82 @@ class GetSingle(GetMulti):
         return want
 
 
+class TreeSpec(NamedTuple):
+    definition: str
+    value: str
+    subs: str
+
+
+tree_spec = Definition(
+    name="tree_spec", primitive="List[str]", spec=TreeSpec, subspec=True
+)
+
+tree_output = Definition(name="tree_output", primitive="Dict[str, Any]")
+
+
+@op(
+    name="tree",
+    inputs={"spec": tree_spec},
+    outputs={"output": tree_output},
+    stage=Stage.OUTPUT,
+)
+class Tree(OperationImplementationContext):
+    async def run(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
+        print()
+        print()
+        print()
+        # Output dict
+        want = {}
+        # TODO Address the need to copy operation implementation inputs dict
+        # In case the input is used elsewhere in the network
+        exported = copy.deepcopy(inputs["spec"])
+
+        def add_item(spec, item):
+            # If this item is at the root
+            if not list(
+                filter(
+                    lambda parent: parent.definition == spec.definition,
+                    item.get_parents(),
+                )
+            ):
+                want[spec.definition.name][item.uid] = {
+                    spec.value: item.value,
+                    spec.subs: [],
+                }
+
+        # Look up the definiton for each
+        for convert in enumerate(exported):
+            spec = convert._replace(
+                definition=await self.octx.ictx.definition(
+                    self.ctx, convert.definition
+                )
+            )
+            want[spec.definition.name] = {}
+            # Inputs which have been added to output dict
+            added = []
+            added_refs = []
+            # Acquire all definitions within the context
+            async with self.octx.ictx.definitions(self.ctx) as od:
+                # All inputs of definition
+                async for item in od.inputs(spec.definition):
+                    # If this item is at the root
+                    if not list(
+                        filter(
+                            lambda parent: parent.definition
+                            == spec.definition,
+                            item.get_parents(),
+                        )
+                    ):
+                        want[spec.definition.name][item.uid] = {
+                            spec.value: item.value,
+                            spec.subs: [],
+                        }
+
+        print()
+        print()
+        return want
+
+
 associate_spec = Definition(name="associate_spec", primitive="List[str]")
 
 associate_output = Definition(
