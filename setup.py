@@ -66,7 +66,11 @@ setup(
             "jsbeautifier",
         ],
     },
-    tests_require=["httptest>=0.0.15"],
+    tests_require=[
+        "httptest>=0.0.15",
+        # See https://github.com/intel/dffml/issues/816
+        "numpy>=1.16.4,<1.19.0",
+    ],
     entry_points={
         "console_scripts": ["dffml = dffml.cli.cli:CLI.main"],
         "dffml.source": [
