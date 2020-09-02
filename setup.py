@@ -62,7 +62,7 @@ setup(
             "sphinx",
             "sphinx_rtd_theme",
             "recommonmark",
-            "black",
+            "black==19.10b0",
             "jsbeautifier",
         ],
     },
