@@ -141,6 +141,8 @@ function run_style() {
 function run_docs() {
   export GIT_SSH_COMMAND='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
+  "${PYTHON}" -m pip install --user -U pip setuptools wheel
+
   cd "${SRC_ROOT}"
   "${PYTHON}" -m pip install --prefix=~/.local -U -e "${SRC_ROOT}[dev]"
   "${PYTHON}" -m dffml service dev install -user

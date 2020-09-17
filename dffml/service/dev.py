@@ -334,7 +334,13 @@ class Install(CMD):
             )
         )
         self.logger.info("Installing %r in development mode", packages)
-        cmd = [sys.executable, "-m", "pip", "install"]
+        cmd = [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            "--use-feature=2020-resolver",
+        ]
         if self.user:
             # --user sometimes fails
             local_path = Path("~", ".local").expanduser().absolute()
