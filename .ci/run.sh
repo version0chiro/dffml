@@ -103,7 +103,8 @@ function run_plugin() {
   # Report installed versions of packages
   "${PYTHON}" -m pip freeze
 
-  if [ "x${GITHUB_ACTIONS}" == "xtrue" ] && [ "x${GITHUB_REF}" == "xrefs/heads/master" ]; then
+  if [[ "x${GITHUB_ACTIONS}" == "xtrue" ]] && \
+     [[ "x${GITHUB_REF}" =~ xrefs/head/[a-zA-Z0-9]*\.[a-zA-Z0-9]*\.[a-zA-Z0-9]* ]]; then
     git status
     dffml service dev release "${PLUGIN}"
   fi
