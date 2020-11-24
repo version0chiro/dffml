@@ -136,6 +136,8 @@ jobs:
         model/transformers=${{ secrets.PYPI_MODEL_TRANSFORMERS }}
         model/scratch=${{ secrets.PYPI_MODEL_SCRATCH }}
         model/scikit=${{ secrets.PYPI_MODEL_SCIKIT }}
+        model/spacy=${{ secrets.PYPI_MODEL_SPACY }}
+        model/xgboost=${{ secrets.PYPI_MODEL_XGBOOST }}
         model/vowpalWabbit=${{ secrets.PYPI_MODEL_VOWPALWABBIT }}
         model/autosklearn=${{ secrets.PYPI_MODEL_AUTOSKLEARN }}
         model/pytorch=${{ secrets.PYPI_MODEL_PYTORCH }}
@@ -145,6 +147,7 @@ jobs:
         operations/binsec=${{ secrets.PYPI_OPERATIONS_BINSEC }}
         operations/deploy=${{ secrets.PYPI_OPERATIONS_DEPLOY }}
         operations/image=${{ secrets.PYPI_OPERATIONS_IMAGE }}
+        operations/nlp=${{ secrets.PYPI_OPERATIONS_NLP }}
         service/http=${{ secrets.PYPI_SERVICE_HTTP }}
         configloader/yaml=${{ secrets.PYPI_CONFIG_YAML }}
         configloader/image=${{ secrets.PYPI_CONFIG_IMAGE }}
