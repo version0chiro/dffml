@@ -264,6 +264,7 @@ jobs:
         dffml service dev install -skip model/daal4py
         # Remove dataclasses. See https://github.com/intel/dffml/issues/882
         python scripts/tempfix/pytorch/pytorch/46930.py
+        pip freeze
     - name: Test
       run: python setup.py test
 
@@ -301,5 +302,6 @@ jobs:
         dffml service dev install -skip model/daal4py
         # Remove dataclasses. See https://github.com/intel/dffml/issues/882
         python scripts/tempfix/pytorch/pytorch/46930.py
+        pip freeze
     - name: Test
       run: python setup.py test
