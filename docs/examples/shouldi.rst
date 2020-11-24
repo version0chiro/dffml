@@ -590,6 +590,7 @@ Re-install the package via pip to make registrations take effect.
 
 .. code-block:: console
     :test:
+    :replace: cmds[0].append("dffml")
 
     $ python -m pip install --use-feature=2020-resolver --force-reinstall -e .
 
