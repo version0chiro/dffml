@@ -61,9 +61,6 @@ if [[ "${has_conda}" != "True" ]]; then
   # Add channels
   conda config --add channels anaconda
   conda config --add channels conda-forge
-  # Remove numpy 1.19.1 see https://github.com/intel/dffml/issues/816
-  # conda uninstall numpy
-  # conda install numpy==1.18.5
   # For some reason conda doesn't come with pip?
   # Commit message: Update to 20.2.3
   GET_PIP_URL="https://github.com/pypa/get-pip/raw/fa7dc83944936bf09a0e4cb5d5ec852c0d256599/get-pip.py"

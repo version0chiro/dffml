@@ -62,9 +62,9 @@ if [[ "x${PLUGIN}" == "xmodel/daal4py" ]] || \
     # Add channels
     conda config --add channels anaconda
     conda config --add channels conda-forge
-    # Remove numpy 1.19.1 see https://github.com/intel/dffml/issues/816
+    # Install tensorflow compatable version of numpy
     conda uninstall numpy
-    conda install numpy==1.18.5
+    conda install 'numpy~=1.19.2'
   fi
   where_conda=$(conda info -s | grep CONDA_ROOT | awk '{print $NF}')
   if [ -f "${where_conda}/etc/profile.d/conda.sh" ]; then
