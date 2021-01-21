@@ -10,25 +10,6 @@ DESCRIPTION = "DFFML Source for MySQL Protocol"
 AUTHOR_NAME = "Sudharsana K J L"
 AUTHOR_EMAIL = "kjlsudharsana@gmail.com"
 # Install dffml if it is not installed in development mode
-INSTALL_REQUIRES = [] + (
-    ["dffml>=0.3.7"]
-    if not any(
-        list(
-            map(
-                os.path.isfile,
-                list(
-                    map(
-                        lambda syspath: os.path.join(
-                            syspath, "dffml.egg-link"
-                        ),
-                        sys.path,
-                    )
-                ),
-            )
-        )
-    )
-    else []
-)
 
 IMPORT_NAME = (
     NAME
@@ -49,11 +30,6 @@ VERSION = ast.literal_eval(
 
 README = Path(SELF_PATH, "README.md").read_text()
 
-REQUIREMENTS_TXT_PATH = Path(SELF_PATH, "requirements.txt")
-if REQUIREMENTS_TXT_PATH.is_file():
-    INSTALL_REQUIRES += list(
-        map(lambda i: i.strip(), REQUIREMENTS_TXT_PATH.read_text().split("\n"))
-    )
 
 REQUIREMENTS_DEV_TXT_PATH = Path(SELF_PATH, "requirements-dev.txt")
 if REQUIREMENTS_DEV_TXT_PATH.is_file():
@@ -88,7 +64,6 @@ KWARGS = dict(
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
-    install_requires=INSTALL_REQUIRES,
     tests_require=TESTS_REQUIRE,
     packages=find_packages(),
 )

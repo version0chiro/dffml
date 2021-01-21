@@ -11,25 +11,6 @@ DESCRIPTION = "DFFML HTTP API Service"
 AUTHOR_NAME = "John Andersen"
 AUTHOR_EMAIL = "john.s.andersen@intel.com"
 # Install dffml if it is not installed in development mode
-INSTALL_REQUIRES = [] + (
-    ["dffml>=0.3.7"]
-    if not any(
-        list(
-            map(
-                os.path.isfile,
-                list(
-                    map(
-                        lambda syspath: os.path.join(
-                            syspath, "dffml.egg-link"
-                        ),
-                        sys.path,
-                    )
-                ),
-            )
-        )
-    )
-    else []
-)
 
 IMPORT_NAME = (
     NAME
@@ -39,11 +20,6 @@ IMPORT_NAME = (
 
 SELF_PATH = os.path.dirname(os.path.realpath(__file__))
 
-REQUIREMENTS_TXT_PATH = Path(SELF_PATH, "requirements.txt")
-if REQUIREMENTS_TXT_PATH.is_file():
-    INSTALL_REQUIRES += list(
-        map(lambda i: i.strip(), REQUIREMENTS_TXT_PATH.read_text().split("\n"))
-    )
 
 with open(os.path.join(SELF_PATH, IMPORT_NAME, "version.py"), "r") as f:
     for line in f:
@@ -78,7 +54,6 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
-    install_requires=INSTALL_REQUIRES,
     include_package_data=True,
     zip_safe=False,
     packages=find_packages(),

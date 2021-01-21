@@ -1,3 +1,4 @@
+dffml>=0.3.7
 aiohttp>=3.6.2
 rpmfile>=1.0.2
 pyelftools>=0.25

@@ -90,7 +90,6 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
-    install_requires=INSTALL_REQUIRES,
     packages=find_packages(),
     entry_points={
         "dffml.model": [

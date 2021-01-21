@@ -71,11 +71,6 @@ VERSION = ast.literal_eval(
 
 README = Path(SELF_PATH, "README.md").read_text()
 
-REQUIREMENTS_TXT_PATH = Path(SELF_PATH, "requirements.txt")
-if REQUIREMENTS_TXT_PATH.is_file():
-    INSTALL_REQUIRES += list(
-        map(lambda i: i.strip(), REQUIREMENTS_TXT_PATH.read_text().split("\n"))
-    )
 
 KWARGS = dict(
     name=NAME,
@@ -101,7 +96,6 @@ KWARGS = dict(
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
-    install_requires=INSTALL_REQUIRES,
     packages=find_packages(),
     entry_points={},
 )

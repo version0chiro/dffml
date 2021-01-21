@@ -1,2 +1,3 @@
+dffml>=0.3.7
 # Install tensorflow compatable version of numpy
 numpy~=1.19.2

@@ -1,1 +1,2 @@
+dffml>=0.3.7
 tensorflow>=2.4.0
