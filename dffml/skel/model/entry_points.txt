@@ -1,0 +1,2 @@
+dffml_model =
+    myslr = REPLACE_IMPORT_PACKAGE_NAME.myslr:MySLRModel

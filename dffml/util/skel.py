@@ -72,13 +72,16 @@ class Skel:
         distutils.dir_util.copy_tree(self.common, target)
         distutils.dir_util.copy_tree(plugin, target)
 
-    def rename_template(self, target, config: SkelTemplateConfig):
+    def rename_template(self, plugin_name, target, config: SkelTemplateConfig):
         # Rename
         src = Path(target, "REPLACE_IMPORT_PACKAGE_NAME")
         dest = Path(target, config.package.replace("-", "_"))
         src.rename(dest)
+        # Put the entry points in the setup.cfg file
+        entry_points_path = pathlib.Path(target, "entry_points.txt")
         # Rename all variables in all files
         rename = {
+            "REPLACE_PLUGIN_NAME": plugin_name,
             "REPLACE_ORG_NAME": config.org,
             "REPLACE_PACKAGE_NAME": config.package,
             "REPLACE_IMPORT_PACKAGE_NAME": config.package.replace("-", "_"),
@@ -86,7 +89,10 @@ class Skel:
             "REPLACE_AUTHOR_NAME": config.name,
             "REPLACE_AUTHOR_EMAIL": config.email,
             "REPLACE_DFFML_VERSION": config.dffml_version,
+            "REPLACE_ENTRY_POINTS", entry_points_path.read_text(),
         }
+        # Remove the entry_points.txt file
+        entry_points_path.unlink()
         for path in dest.parent.rglob("*"):
             # Skip directories
             if path.is_dir():
@@ -103,4 +109,4 @@ class Skel:
     def from_template(self, plugin_name, target, config):
         plugin = self.skel / Path(plugin_name)
         self.copy_template(plugin, target)
-        self.rename_template(target, config)
+        self.rename_template(plugin_name, target, config)
