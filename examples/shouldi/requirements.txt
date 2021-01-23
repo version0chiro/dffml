@@ -1,4 +1,6 @@
 dffml>=0.3.7
+dffml-feature-git>=0.2.7
+PyYAML>=5.1.2
 aiohttp>=3.5.4
 bandit>=1.6.2
 safety>=1.8.5
